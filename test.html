@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Owam Duna - Portfolio</title>
+  
+  <!-- Import Poppins font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #3a86ff;
+      --secondary-color: #8338ec;
+      --accent-color: #ff006e;
+      --gradient-1: linear-gradient(to right, #3a86ff, #8338ec);
+      --gradient-2: linear-gradient(to right, #ff006e, #fb5607);
+      --gradient-3: linear-gradient(135deg, #3a86ff, #8338ec, #ff006e);
+      --light-bg: #f8f9fa;
+      --dark-text: #212529;
+      --light-text: #f8f9fa;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%233a86ff' fill-opacity='0.05'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+      position: relative;
+    }
+
+    /* Digital decorative elements */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 30%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg stroke='%238338ec' stroke-width='1' stroke-opacity='0.1'%3E%3Crect fill='none' x='25' y='25' width='50' height='50'/%3E%3Crect fill='none' x='12.5' y='12.5' width='75' height='75'/%3E%3Crect fill='none' x='0' y='0' width='100' height='100'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23ff006e' fill-opacity='0.1'%3E%3Ccircle cx='50' cy='50' r='12.5'/%3E%3Ccircle cx='50' cy='50' r='25'/%3E%3Ccircle cx='50' cy='50' r='37.5'/%3E%3Ccircle cx='50' cy='50' r='50'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    header {
+      background: var(--gradient-1);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--light-text);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+      margin-left: 25px;
+      color: var(--light-text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      letter-spacing: 0.8px;
+      position: relative;
+      padding: 6px 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--light-text);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .intro {
+      padding: 100px 40px 70px;
+      text-align: center;
+      background: var(--gradient-3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    .intro h2 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      color: var(--light-text);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .intro p {
+      font-size: 1.3rem;
+      color: var(--light-text);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    section {
+      padding: 60px 40px;
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      bottom: -10px;
+      left: -10px;
+      background: var(--gradient-3);
+      border-radius: 16px;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 2.4rem;
+      margin-bottom: 25px;
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+
+    section h3 {
+      color: var(--secondary-color);
+      font-size: 1.8rem;
+      margin: 30px 0 15px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+    }
+
+    section p, li {
+      font-size: 1.1rem;
+      color: var(--dark-text);
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 25px;
+      margin: 10px 0 20px;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    ul li::before {
+      content: "•";
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    .number-tag {
+      display: inline-block;
+      background: var(--gradient-2);
+      color: var(--light-text);
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 30px;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .vision-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .vision-card {
+      flex: 1 1 400px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 5px solid var(--accent-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%238338ec' fill-opacity='0.03'%3E%3Cpath d='M0 0h100v100H0z'/%3E%3Cpath fill='%23ff006e' d='M100 0H0v100h100V0zM9 90h82V10H9v80z'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .vision-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .contact-item {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .contact-item::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient-1);
+      z-index: -1;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-item h3 {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-item p {
+      margin: 10px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-item a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    /* Digital elements */
+    .digital-element {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(131,56,236,0.1) 0%, rgba(131,56,236,0) 70%);
+      top: 20%;
+      left: 10%;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .square {
+      width: 200px;
+      height: 200px;
+      border: 2px solid rgba(58,134,255,0.1);
+      top: 60%;
+      right: 5%;
+      animation: rotate 20s infinite linear;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 250px solid rgba(255,0,110,0.05);
+      bottom: 10%;
+      left: 20%;
+      animation: float 18s infinite ease-in-out reverse;
+    }
+
+    .lines {
+      width: 400px;
+      height: 400px;
+      background-image: repeating-linear-gradient(0deg, rgba(58,134,255,0.1), rgba(58,134,255,0.1) 2px, transparent 2px, transparent 10px);
+      top: 5%;
+      right: 15%;
+      animation: pulse 12s infinite ease-in-out;
+    }
+
+    .dots {
+      width: 300px;
+      height: 300px;
+      background-image: radial-gradient(rgba(255,0,110,0.2) 1px, transparent 1px);
+      background-size: 15px 15px;
+      bottom: 15%;
+      right: 25%;
+      animation: float 10s infinite ease-in-out alternate;
+    }
+
+    .wave {
+      width: 100%;
+      height: 100px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%238338ec' fill-opacity='0.1' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,208C1248,171,1344,117,1392,90.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      bottom: 0;
+      left: 0;
+      animation: wave 15s infinite linear alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.3; }
+    }
+
+    @keyframes wave {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Chatbot */
+    df-messenger {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      --df-messenger-button-titlebar-color: var(--secondary-color);
+      --df-messenger-button-titlebar-font-color: var(--light-text);
+      --df-messenger-button-titlebar-font-family: 'Poppins', sans-serif;
+      --df-messenger-chat-background-color: var(--light-bg);
+      --df-messenger-font-family: 'Poppins', sans-serif;
+      --df-messenger-font-color: var(--dark-text);
+      --df-messenger-send-icon-fill-color: var(--accent-color);
+      --df-messenger-user-message-background-color: var(--primary-color);
+      --df-messenger-agent-message-background-color: #eff1f7;
+      --df-messenger-agent-message-font-color: var(--dark-text);
+      --df-messenger-input-font-color: var(--dark-text);
+      --df-messenger-input-placeholder-font-color: #888;
+      --df-messenger-input-background-color: var(--light-bg);
+      --df-messenger-chat-header-font-color: var(--light-text);
+    }
+  </style>
+
+  <!-- Dialogflow Messenger -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+</head>
+<body>
+
+    <!-- Digital elements animations -->
+    <div class="digital-element circle"></div>
+    <div class="digital-element square"></div>
+    <div class="digital-element triangle"></div>
+    <div class="digital-element lines"></div>
+    <div class="digital-element dots"></div>
+    <div class="digital-element wave"></div>
+    <h1>Owam Duna</h1>
+    <nav>
+      <a href="#introduction">Introduction</a>
+      <a href="#about">About Me</a>
+      <a href="#vision">My Vision</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Introduction -->
+  <div class="intro">
+    <h2>Hello, I'm Owam 👋</h2>
+    <p>Python Developer | Creative Thinker | Capacity@APACITI Student</p>
+  </div>
+
+  <!-- Introduction Section -->
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      Before diving into my journey and work, here's a brief look at who I am and why this portfolio matters. 
+      It's a glimpse into my background, my passion for technology, and the path I'm carving for myself in the digital world.
+    </p>
+    <p>
+      Hello, my name is Owam Duna, and I'm a passionate and curious individual from Qamata Basin (Enyongwane), 
+      a rural area in Cofimvaba, Eastern Cape. I started my schooling at Inkqwiliso J.S.S and completed high school at Cofimvaba S.S.S.
+    </p>
+    <p>
+      My interest in technology grew when I moved to George, where I studied System Development for one year through the Isivande Projects. 
+      That's where I was introduced to programming and started creating digital solutions to solve real-world challenges.
+    </p>
+    <p>
+      Currently, I am part of the Capacity@APACITI Demand Academy 2 program in Cape Town, under the April 2025 intake. 
+      This experience is expanding my skills in both digital literacy and professional readiness.
+    </p>
+  </section>
+
+  <!-- About Me -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a motivated and passionate aspiring developer from Qamata Basin, currently based in Cape Town. 
+      I enjoy solving real-world problems using technology. I have experience working with Python, 
+      building systems like student tracking tools, and I'm currently exploring AI tools like chatbots.
+    </p>
+    <p>
+      This portfolio is a reflection of my growth, learning journey, and hands-on experience in the field of technology.
+    </p>
+    <p>Inside, you'll find:</p>
+    <ul>
+      <li>Projects I've worked on</li>
+      <li>My technical skills and tools I've used</li>
+      <li>Personal reflections and development</li>
+      <li>My goals and where I see myself going next</li>
+    </ul>
+    <p>
+      It's more than just a collection of work — it's a story of where I come from, what I've learned, and how I'm building a future in tech.
+    </p>
+    <p>
+      I envision building my own tech lab in my home village of Qamata Basin in the Eastern Cape. Growing up in a rural area, 
+      I witnessed the daily struggles of limited access to digital tools, resources, and opportunities. After finishing Grade 12 and being 
+      exposed to a completely different environment—one with accessible technology and learning spaces—I realized the massive gap between 
+      rural and urban opportunities.
+    </p>
+    <p>
+      My dream is to close that gap by creating a space where young people from my community can learn, experiment, 
+      and grow in the world of technology—right at home. I believe real change starts where you are, and I'm committed to being that change.
+    </p>
+  </section>
+
+  <!-- Vision and Mission -->
+  <section id="vision">
+    <h2>My Vision & Mission</h2>
+    
+    <h3>My Mission</h3>
+    <p>
+      My mission is to grow my digital and IT skills by immersing myself in various tech industries and gaining hands-on experience 
+      across different fields. I believe that true understanding comes from doing, and my goal is to become equipped with practical 
+      knowledge that I can take back to my village in Qamata Basin.
+    </p>
+    <p>
+      I am also committed to building strong relationships with experienced tech professionals—mentors, collaborators, and peers—who 
+      can support me on this journey. With their guidance and my dedication, I aim to one day empower the youth in my community by 
+      teaching them valuable tech skills and creating opportunities they currently don't have access to.
+    </p>
+    
+    <h3>My Vision</h3>
+    <div class="vision-container">
+      <div class="vision-card">
+        <div class="number-tag">01.</div>
+        <h3>Building a Tech Lab in My Rural Hometown</h3>
+        <p>
+          I envision establishing a fully equipped tech lab in my home village of Qamata Basin, Cofimvaba. Growing up in a rural area, 
+          I experienced the lack of access to digital resources and educational tools. My dream is to bring those tools closer to 
+          young people in my community—to empower them with the same opportunities I've discovered beyond my hometown.
+        </p>
+      </div>
+      
+      <div class="vision-card">
+        <div class="number-tag">02.</div>
+        <h3>Bridging the Digital Divide Through Empowerment</h3>
+        <p>
+          I want to create a space where innovation, creativity, and learning thrive. My goal is to not only teach digital skills but 
+          to inspire a new generation of thinkers, coders, and builders who believe in their potential. By creating this lab, 
+          I aim to bridge the gap between rural and urban opportunities in the tech space.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <ul>
+      <li><strong>2-Rand System:</strong> A Python-based app to track late and absent students.</li>
+      <li><strong>AI Chatbot:</strong> An interactive chatbot built using Dialogflow to help users learn about AI fundamentals.</li>
+      <li><strong>Presentation Tools:</strong> Created educational content using Canva, PowerPoint, and Miro to reflect and present learning outcomes.</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>
+      I'm always open to new opportunities, collaborations, and conversations. Whether you want to discuss tech, share ideas, 
+      or explore ways we can work together, feel free to reach out. I look forward to connecting with like-minded people and growing together.
+    </p>
+    
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p><a href="mailto:owam.duna@capaciti.org.za">owam.duna@capaciti.org.za</a></p>
+        <p><a href="mailto:owamduna14@gmail.com">owamduna14@gmail.com</a></p>
+      </div>
+      
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p>069 827 6762</p>
+      </div>
+      
+      <div class="contact-item">
+        <h3>Address</h3>
+        <p>5592 Crescent Umnga street, Langa, Cape Town</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Owam Duna. All rights reserved.
+  </footer>
+
+  <!-- Chatbot -->
+  <df-messenger
+    intent="WELCOME"
+    chat-title="Duna's Textbot"
+    agent-id="28597d02-f7a8-48a5-8da2-b78d00ce85f8"
+    language-code="en">
+  </df-messenger>
+
+</body>
+</html>
